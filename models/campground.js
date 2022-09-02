@@ -54,4 +54,4 @@ CampgroundSchema.post("findOneAndDelete", async (doc) => {
   }
 });
 
-export default mongoose.model("Campground", CampgroundSchema);
+export default mongoose.model("campground", CampgroundSchema);

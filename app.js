@@ -23,7 +23,8 @@ import User from "./models/user.js";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const port = process.env.PORT || 3000;
-const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/yelp-camp";
+//const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/yelp-camp";
+const dbUrl = "mongodb://localhost:27017/yelp-camp";
 
 async function main() {
   await mongoose.connect(dbUrl);

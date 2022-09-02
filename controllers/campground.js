@@ -2,7 +2,7 @@ import paginate from "express-paginate";
 import { v2 as cloudinary } from "cloudinary";
 import nominatim from "nominatim-client";
 
-import Campground from "../models/Campground.js";
+import Campground from "../models/campground.js";
 import mongoose from "mongoose";
 
 const client = nominatim.createClient({

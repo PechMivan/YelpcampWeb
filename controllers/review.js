@@ -1,4 +1,4 @@
-import Campground from "../models/Campground.js";
+import Campground from "../models/campground.js";
 import Review from "../models/review.js";
 
 export const reviews = {
