@@ -1,0 +1,79 @@
+<% layout('../layout/boilerplate') %>
+
+<div>
+  <div id="map" style="height: 500px; width: auto"></div>
+</div>
+
+<div class="container my-3">
+  <div class="row">
+    <div class="col-md-8 justify-content-start mb-3">
+        <a href="/campgrounds/" style="text-decoration: none;"><h2 class="text-center" style="display: inline;">All available campgrounds</h2></a>
+    </div>
+<div class="col-md-4">
+  <form action="/campgrounds/" method="GET">
+    <div class="input-group mb-3">
+  <input type="text" class="form-control" id="searchValue" name="searchValue" placeholder="Search for title">
+  <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i></button>
+  </form>
+</div>
+</div>
+  </div>
+  <div class="row">
+    <% if(!campgroundsBatch.length) {%> 
+        <h1 class="my-5 text-center">Sorry! No campgrounds matching... :(</h1>
+      <% } %> 
+    <% for(let campground of campgroundsBatch) { %>
+    <div class="d-flex col-md-6">
+      <div class="row campground-info">
+        <div class="col-md-4">
+          <img
+            src="<%= campground.images[0].url %>"
+            class="img-fluid"
+            alt="image"
+          />
+        </div>
+        <div class="col-md-8 d-flex flex-column" style="flex-grow: 1">
+          <p class="line-clamp dont-break-out"><%= campground.title %></p>
+          <p class="text-muted"><%= campground.location %></p>
+          <p>$<%= campground.price %> per Night</p>
+          <p class="line-clamp"><%= campground.description %></p>
+          <a
+            class="btn btn-primary mt-auto ms-auto"
+            href="/campgrounds/<%= campground._id %>"
+            >More Details</a
+          >
+        </div>
+      </div>
+    </div>
+    <% } %>
+  </div>
+  <% if(paginate.hasPreviousPages || paginate.hasNextPages(pageCount)) { %>
+  <div class="row">
+    <div class="d-flex justify-content-center col w-100">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <% if(paginate.hasPreviousPages) { %>
+          <li class="page-item">
+            <a class="page-link" href=<%=paginate.href(true)%>>Previous</a>
+          </li>
+          <% } %> <% for(let page of pages) { %>
+          <li class="page-item <%= (paginate.page === page.number) ? "active" : "" %>">
+            <a class="page-link" href=<%=page.url%>><%= page.number %> </a>
+          </li>
+          <% } if(paginate.hasNextPages(pageCount)) { %>
+          <li class="page-item">
+            <a class="page-link" href=<%=paginate.href()%>>Next</a>
+          </li>
+          <% } %>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <% } %>
+</div>
+
+<script>
+  const campgrounds = { features: <%- JSON.stringify(campgrounds) %> };
+</script>
+
+<script src="/javascripts/clusterMap.js"></script>

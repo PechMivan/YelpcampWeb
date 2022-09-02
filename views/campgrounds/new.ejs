@@ -1,0 +1,83 @@
+<% layout('../layout/boilerplate') -%>
+
+<div class="container">
+  <h1 class="text-center">Create a new camp</h1>
+  <form
+    action="/campgrounds/"
+    method="POST"
+    novalidate
+    class="needs-validation"
+    enctype="multipart/form-data"
+  >
+    <div class="mb-3">
+      <label for="title" class="form-label"><b>Title</b> </label>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        class="form-control"
+        required
+      />
+      <div class="invalid-feedback">Please provide a valid title.</div>
+    </div>
+    <div class="mb-3">
+      <label for="location" class="form-label"><b>Location</b> </label>
+      <input
+        type="text"
+        id="location"
+        name="location"
+        class="form-control"
+        required
+      />
+      <div class="invalid-feedback">Please provide a valid location.</div>
+    </div>
+    <!-- <div class="mb-3">
+      <label for="image" class="form-label"><b>Image</b></label>
+      <input
+        type="text"
+        id="image"
+        name="image"
+        class="form-control"
+        required
+      />
+      <div class="invalid-feedback">Please provide a valid image or url.</div>
+    </div> -->
+    <div class="mb-3">
+      <label for="image" class="form-label"><b>Image(s)</b></label>
+      <input
+        type="file"
+        name="image"
+        id="image"
+        class="form-control"
+        multiple
+      />
+    </div>
+    <div class="mb-3">
+      <label for="price" class="form-label"><b>Price</b></label>
+      <div class="input-group">
+        <span class="input-group-text" id="basic-addon1">$</span>
+        <input
+          type="number"
+          name="price"
+          id="price"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">Please provide a price.</div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label"><b>Description</b> </label>
+      <textarea
+        class="form-control"
+        name="description"
+        id="description"
+        rows="5"
+        required
+      ></textarea>
+      <div class="invalid-feedback">Please provide a valid description.</div>
+    </div>
+    <a href="/campgrounds" class="btn btn-danger float-end">Cancel</a>
+    <button type="submit" class="btn btn-primary float-end me-3">Create</button>
+  </form>
+</div>
